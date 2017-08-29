@@ -3,18 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>hight-power&#39;Home</title>
+  <title>HTML5本地存储——IndexedDB（基本使用） | hight-power&#39;Home</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="hight-power&#39;Home">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="前端页面缓存有多重方式，该文章就是我从网上学习到的属于 IndexeDB 的基本使用方法。后面会陆陆续续的写入其他方式。如：Web Storage（Local Storage和Session Storage）与IndexedDB、Web SQL Database。但是实际上现在在HTML5本地存储——Web SQL Database提到过Web SQL Database实际上已经被废弃。   在H">
+<meta name="keywords" content="HTML5 JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5本地存储——IndexedDB（基本使用）">
+<meta property="og:url" content="http://yoursite.com/2015/12/26/IndexedDB的基本使用/index.html">
 <meta property="og:site_name" content="hight-power&#39;Home">
+<meta property="og:description" content="前端页面缓存有多重方式，该文章就是我从网上学习到的属于 IndexeDB 的基本使用方法。后面会陆陆续续的写入其他方式。如：Web Storage（Local Storage和Session Storage）与IndexedDB、Web SQL Database。但是实际上现在在HTML5本地存储——Web SQL Database提到过Web SQL Database实际上已经被废弃。   在H">
+<meta property="og:image" content="http://images.cnitblog.com/blog/349217/201311/10131539-077ebb85a9c24aa7adb799a9ae3bdd40.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/349217/201311/10131542-5a74401a0e304d57b7079b798823fba1.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/349217/201311/10131543-e023f428b82e421ab19332d050494537.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/349217/201311/10131544-6d7b21f0d6934d25a199f3946cf1d8d2.png">
+<meta property="og:updated_time" content="2017-08-29T07:19:30.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hight-power&#39;Home">
+<meta name="twitter:title" content="HTML5本地存储——IndexedDB（基本使用）">
+<meta name="twitter:description" content="前端页面缓存有多重方式，该文章就是我从网上学习到的属于 IndexeDB 的基本使用方法。后面会陆陆续续的写入其他方式。如：Web Storage（Local Storage和Session Storage）与IndexedDB、Web SQL Database。但是实际上现在在HTML5本地存储——Web SQL Database提到过Web SQL Database实际上已经被废弃。   在H">
+<meta name="twitter:image" content="http://images.cnitblog.com/blog/349217/201311/10131539-077ebb85a9c24aa7adb799a9ae3bdd40.png">
   
     <link rel="alternative" href="/atom.xml" title="hight-power&#39;Home" type="application/atom+xml">
   
@@ -184,9 +194,7 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-IndexedDB的基本使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-IndexedDB的基本使用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/12/26/IndexedDB的基本使用/" class="article-date">
@@ -202,15 +210,39 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/26/IndexedDB的基本使用/">
-        HTML5本地存储——IndexedDB（基本使用）
-        
-      </a>
+    <h1 class="article-title" itemprop="name">
+      HTML5本地存储——IndexedDB（基本使用）
+      
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5-JavaScript/">HTML5 JavaScript</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/缓存/">缓存</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2015/12/26/IndexedDB的基本使用/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="HTML5本地存储——IndexedDB（基本使用）">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -369,264 +401,42 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5-JavaScript/">HTML5 JavaScript</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/缓存/">缓存</a>
-	</div>
-
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2015/12/26/IndexedDB的基本使用/" class="leancloud_visitors post-title-link"
-          style="font-size: 12px" data-flag-title="HTML5本地存储——IndexedDB（基本使用）">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/03/10/javascript/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
   
 </article>
 
 
-
-
-
-
-
-  
-    <article id="post-javascript" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/03/10/javascript/" class="article-date">
-  	<time datetime="2015-03-10T07:20:16.000Z" itemprop="datePublished">2015-03-10</time>
-</a>
+<div class="ds-share share" data-thread-key="IndexedDB的基本使用" data-title="HTML5本地存储——IndexedDB（基本使用）" data-url="http://yoursite.com/2015/12/26/IndexedDB的基本使用/"  data-images="http://www.shzbbc.com/uploads/tu/ztmb/slt/118473.jpg" data-content="HTML5本地存储——IndexedDB（基本使用）">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
     </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/10/javascript/">
-        Hello World
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<h2 id="这是一个标题"><a href="#这是一个标题" class="headerlink" title="这是一个标题"></a>这是一个标题</h2>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/hello-word/">hello word</a>
-	</div>
-
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2015/03/10/javascript/" class="leancloud_visitors post-title-link"
-          style="font-size: 12px" data-flag-title="Hello World">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
+ </div>
+ 
 
 
 
 
 
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/03/10/hello-world/" class="article-date">
-  	<time datetime="2015-03-10T07:20:16.000Z" itemprop="datePublished">2015-03-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/10/hello-world/">
-        Hello World
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/hello-word/">hello word</a>
-	</div>
-
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2015/03/10/hello-world/" class="leancloud_visitors post-title-link"
-          style="font-size: 12px" data-flag-title="Hello World">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-getbest" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/03/04/getbest/" class="article-date">
-  	<time datetime="2014-03-03T19:02:01.000Z" itemprop="datePublished">2014-03-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/04/getbest/">
-        hahha
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="麻辣隔壁"><a href="#麻辣隔壁" class="headerlink" title="麻辣隔壁"></a>麻辣隔壁</h1>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2014/03/04/getbest/" class="leancloud_visitors post-title-link"
-          style="font-size: 12px" data-flag-title="hahha">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -650,8 +460,8 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
