@@ -217,155 +217,6 @@
       
         <p>前端页面缓存有多重方式，该文章就是我从网上学习到的属于 IndexeDB 的基本使用方法。后面会陆陆续续的写入其他方式。如：Web Storage（Local Storage和Session Storage）与IndexedDB、Web SQL Database。但是实际上现在在HTML5本地存储——Web SQL Database提到过Web SQL Database实际上已经被废弃。</p>
 <hr>
-<blockquote>
-<p>在<a href="http://www.cnblogs.com/dolphinX/p/3405335.html" target="_blank" rel="external">HTML5本地存储——Web SQL - - Database</a>提到过Web SQL Database实际上已经被废弃，而HTML5的支持的本地存储实际上变成了</p>
-<p><a href="http://www.cnblogs.com/dolphinX/p/3348469.html" target="_blank" rel="external">Web Storage</a>（Local Storage和Session Storage）与IndexedDB。WebStorage使用简单字符串键值对在本地存储数据，方便灵活，但是对于大量结构化数据存储力不从心，IndexedDB是为了能够在客户端存储大量的结构化数据，并且使用索引高效检索的API。</p>
-</blockquote>
-<h3 id="异步API"><a href="#异步API" class="headerlink" title="异步API"></a>异步API</h3><blockquote>
-<p>在IndexedDB大部分操作并不是我们常用的调用方法，返回结果的模式，而是请求——响应的模式，比如打开数据库的操作</p>
-<p>这条指令并不会返回一个DB对象的句柄，我们得到的是一个IDBOpenDBRequest对象，而我们希望得到的DB对象在其result属性中，</p>
-</blockquote>
-<p><a href="http://images.cnitblog.com/blog/349217/201311/10131539-526fb7bed23e468b8a88beffd99f2020.png" target="_blank" rel="external"><img src="http://images.cnitblog.com/blog/349217/201311/10131539-077ebb85a9c24aa7adb799a9ae3bdd40.png" alt="image" title="image"></a></p>
-<blockquote>
-<p>这条指令请求的响应是一个 IDBDatabase对象，这就是IndexedDB对象，</p>
-</blockquote>
-<p><a href="http://images.cnitblog.com/blog/349217/201311/10131541-5309e86fb7eb45d687ca94a0eed326b3.png" target="_blank" rel="external"><img src="http://images.cnitblog.com/blog/349217/201311/10131542-5a74401a0e304d57b7079b798823fba1.png" alt="image" title="image"></a></p>
-<ul>
-<li><p>除了result，IDBOpenDBRequest接口定义了几个重要属性</p>
-<ol>
-<li>onerror: 请求失败的回调函数句柄</li>
-<li>onsuccess:请求成功的回调函数句柄</li>
-<li>onupgradeneeded:请求数据库版本变化句柄</li>
-</ol>
-</li>
-</ul>
-<blockquote>
-<p>所谓异步API是指并不是这条指令执行完毕，我们就可以使用request.result来获取indexedDB对象了，就像使用ajax一样，语句执行完并不代表已经获取到了对象，所以我们一般在其回调函数中处理。</p>
-</blockquote>
-<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><blockquote>
-<p>刚才的语句已经展示了如何打开一个indexedDB数据库，调用indexedDB.open方法就可以创建或者打开一个indexedDB。看一个完整的处理</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">functionv openDB(name) &#123;</div><div class="line"></div><div class="line">    var request = window.indexedDB.open(name);</div><div class="line">    </div><div class="line">    request.onerror = function(e)&#123;</div><div class="line">    </div><div class="line">            console.log ( &apos;OPen Error!&apos; );</div><div class="line">            </div><div class="line">    &#125;;</div><div class="line">    request.onsuccess = function(e)&#123;</div><div class="line">    </div><div class="line">        myDB.db = e.target.result;</div><div class="line">        </div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var myDB = &#123;</div><div class="line">    name:&apos;test&apos;,</div><div class="line">    version:1,</div><div class="line">    db:null</div><div class="line">&#125;;</div><div class="line"></div><div class="line">openDB(myDB.name);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>代码中定义了一个myDB对象，在创建indexedDBrequest的成功毁掉函数中，把request获取的DB对象赋值给了myDB的db属性，这样就可以使用myDB.db来访问创建的indexedDB了。</p>
-</blockquote>
-<p>&nbsp;</p>
-<h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><blockquote>
-<p>我们注意到除了onerror和onsuccess，IDBOpenDBRequest还有一个类似回调函数句柄——onupgradeneeded。这个句柄在我们请求打开的数据库的版本号和已经存在的数据库版本号不一致的时候调用。</p>
-<p>indexedDB.open()方法还有第二个可选参数，数据库版本号，数据库创建的时候默认版本号为1，当我们传入的版本号和数据库当前版本号不一致的时候onupgradeneeded就会被调用，当然我们不能试图打开比当前数据库版本低的version，否则调用的就是onerror了，修改一下刚才例子</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function openDB(name,version) &#123;</div><div class="line"></div><div class="line">    var version = version || 1;</div><div class="line">    </div><div class="line">    var request = window.indexedDB.open(name,version);</div><div class="line">    </div><div class="line">    request.onerror = function(e)&#123;</div><div class="line">    </div><div class="line">        console.log(e.currentTarget.error.message);</div><div class="line">        </div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    request.onsuccess = function(e)&#123;</div><div class="line">    </div><div class="line">        myDB.db = e.target.result;</div><div class="line">        </div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    request.onupgradeneeded = function(e)&#123;</div><div class="line">    </div><div class="line">        console.log(&apos;DB version changed to &apos;+version);</div><div class="line">        </div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var myDB=&#123;</div><div class="line">    name:&apos;test&apos;,</div><div class="line">    version:3,</div><div class="line">    db:null</div><div class="line">&#125;;</div><div class="line"></div><div class="line">openDB(myDB.name,myDB.version);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>由于刚才已经创建了版本为1的数据库，打开版本为3的时候，会在控制台输出：DB version changed to 3</p>
-</blockquote>
-<p>&nbsp;</p>
-<h3 id="关闭与删除数据库"><a href="#关闭与删除数据库" class="headerlink" title="关闭与删除数据库"></a>关闭与删除数据库</h3><ul>
-<li>关闭数据库可以直接调用数据库对象的close方法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function closeDB(db)&#123;</div><div class="line"></div><div class="line">    db.close();</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&nbsp;</p>
-<ul>
-<li>删除数据库使用indexedDB对象的deleteDatabase方法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function deleteDB(name)&#123;</div><div class="line"></div><div class="line">    indexedDB.deleteDatabase(name);</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&nbsp;</p>
-<ul>
-<li>简单调用</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var myDB = &#123;</div><div class="line">    name:&apos;test&apos;,</div><div class="line">    version:3,</div><div class="line">    db:null</div><div class="line">&#125;;</div><div class="line"></div><div class="line">openDB(myDB.name,myDB.version);</div><div class="line"></div><div class="line">setTimeout(function()&#123;</div><div class="line"></div><div class="line">    closeDB(myDB.db);</div><div class="line">    </div><div class="line">    deleteDB(myDB.name);</div><div class="line">    </div><div class="line">&#125;,500);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>由于异步API原因，不能保证能够在closeDB方法调用前获取db对象（实际上获取db对象也比执行一条语句慢得多），所以用了setTimeout延迟了一下。当然我们注意到每个indexedDB实例都有onclose回调函数句柄，用以数据库关闭的时候处理，有兴趣同学可以试试，原理很简单，不演示了。</p>
-</blockquote>
-<p>&nbsp;</p>
-<h3 id="object-store"><a href="#object-store" class="headerlink" title="object store"></a>object store</h3><blockquote>
-<p>有了数据库后我们自然希望创建一个表用来存储数据，但indexedDB中没有表的概念，而是objectStore，一个数据库中可以包含多个objectStore，objectStore是一个灵活的数据结构，可以存放多种类型数据。也就是说一个objectStore相当于一张表，里面存储的每条数据和一个键相关联。</p>
-<p>我们可以使用每条记录中的某个指定字段作为键值（keyPath），也可以使用自动生成的递增数字作为键值（keyGenerator），也可以不指定。选择键的类型不同，objectStore可以存储的数据结构也有差异</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>键类型</th>
-<th style="text-align:center">存储数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>不使用</td>
-<td style="text-align:center">任意值，但是没添加一条数据的时候需要指定键参数</td>
-</tr>
-<tr>
-<td>keyPath</td>
-<td style="text-align:center">Javascript对象，对象必须有一属性作为键值</td>
-</tr>
-<tr>
-<td>keyGenerator</td>
-<td style="text-align:center">任意值</td>
-</tr>
-<tr>
-<td>都使用</td>
-<td style="text-align:center">Javascript对象，如果对象中有keyPath指定的属性则不生成新的键值，如果没有自动生成递增键值，填充keyPath指定属性</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><blockquote>
-<p>在对新数据库做任何事情之前，需要开始一个事务。事务中需要指定该事务跨越哪些object store。</p>
-</blockquote>
-<ul>
-<li><p>事务具有三种模式:</p>
-<ol>
-<li>只读：read，不能修改数据库数据，可以并发执行</li>
-<li>读写：readwrite，可以进行读写操作</li>
-<li>版本变更：verionchange</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var transaction=db.transaction([students&apos;,&apos;taecher&apos;]);</div><div class="line">/*打开一个事务，使用students 和teacher object store*/</div><div class="line"></div><div class="line">var objectStore=transaction.objectStore(&apos;students&apos;);</div><div class="line">/*获取students object store*/</div></pre></td></tr></table></figure>
-<p>&nbsp;</p>
-<h3 id="给object-store添加数据"><a href="#给object-store添加数据" class="headerlink" title="给object store添加数据"></a>给object store添加数据</h3><blockquote>
-<p>调用数据库实例的createObjectStore方法可以创建objectstore，方法有两个参数：store name和键类型。调用store的add方法添加数据。有了上面知识，我们可以向object store内添加数据了</p>
-</blockquote>
-<p>&nbsp;</p>
-<p><strong>keyPath</strong></p>
-<blockquote>
-<p>因为对新数据的操作都需要在transaction中进行，而transaction又要求指定object store，所以我们只能在创建数据库的时候初始化object store以供后面使用，这正是onupgradeneeded的一个重要作用，修改一下之前代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function openDB (name,version) &#123;</div><div class="line">    var version = version || 1;</div><div class="line">    </div><div class="line">    var request = window.indexedDB.open(name,version);</div><div class="line">    request.onerror = function(e)&#123;</div><div class="line">        console.log(e.currentTarget.error.message);</div><div class="line">        </div><div class="line">    &#125;;</div><div class="line">    request.onsuccess = function(e)&#123;</div><div class="line">    </div><div class="line">        myDB.db=e.target.result;</div><div class="line">        </div><div class="line">    &#125;;</div><div class="line">    request.onupgradeneeded = function(e)&#123;</div><div class="line">    </div><div class="line">        var db = e.target.result;</div><div class="line">        </div><div class="line">        if(!db.objectStoreNames.contains(&apos;students&apos;))&#123;</div><div class="line">        </div><div class="line">            db.createObjectStore(&apos;students&apos;,&#123;keyPath:&quot;id&quot;&#125;);</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        console.log(&apos;DB version changed to &apos;+version);</div><div class="line">        </div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样在创建数据库的时候我们就为其添加了一个名为students的object store，准备一些数据以供添加</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var students=[&#123; </div><div class="line">            id:1001, </div><div class="line">            name:&quot;Byron&quot;, </div><div class="line">            age:24</div><div class="line">        &#125;,&#123; </div><div class="line">            id:1002, </div><div class="line">            name:&quot;Frank&quot;, </div><div class="line">            age:30 </div><div class="line">        &#125;,&#123; </div><div class="line">            id:1003, </div><div class="line">            name:&quot;Aaron&quot;, </div><div class="line">            age:26 </div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">function addData(db,storeName)&#123;</div><div class="line"></div><div class="line">    var transaction=db.transaction(storeName,&apos;readwrite&apos;);</div><div class="line">    </div><div class="line">    var transaction.objectStore(storeName); </div><div class="line"></div><div class="line">    for(var i=0;i&lt;students.length;i++)&#123;</div><div class="line">    </div><div class="line">        store.add(students[i]);</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line">openDB(myDB.name,myDB.version);</div><div class="line"></div><div class="line">setTimeout(function ()&#123;</div><div class="line"></div><div class="line">    addData(myDB.db,&apos;students&apos;);</div><div class="line">    </div><div class="line">&#125;,1000);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这样我们就在students object store里添加了三条记录，以id为键，在chrome控制台看看效果</p>
-</blockquote>
-<p><a href="http://images.cnitblog.com/blog/349217/201311/10131542-89767b068ae946aea7f5aafb0955106b.png" target="_blank" rel="external"><img src="http://images.cnitblog.com/blog/349217/201311/10131543-e023f428b82e421ab19332d050494537.png" alt="image" title="image"></a></p>
-<p>&nbsp;</p>
-<p><strong>keyGenerate</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function openDB (name,version) &#123;</div><div class="line">    var version=version || 1;</div><div class="line">    var request= window.indexedDB.open(name,version);</div><div class="line">    request.onerror = function (e)&#123;</div><div class="line">        console.log(e.currentTarget.error.message);</div><div class="line">    &#125;;</div><div class="line">    request.onsuccess = function (e)&#123;</div><div class="line">        myDB.db = e.target.result;</div><div class="line">    &#125;;</div><div class="line">    request.onupgradeneeded = function (e)&#123;</div><div class="line">        var db= e.target.result;</div><div class="line">        if(!db.objectStoreNames.contains(&apos;students&apos;))&#123;</div><div class="line">            db.createObjectStore(&apos;students&apos;,&#123;autoIncrement: true&#125;);</div><div class="line">        &#125;</div><div class="line">        console.log(&apos;DB version changed to &apos;+version);</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="http://images.cnitblog.com/blog/349217/201311/10131543-9f65220f975041bb91083a7207c3877a.png" target="_blank" rel="external"><img src="http://images.cnitblog.com/blog/349217/201311/10131544-6d7b21f0d6934d25a199f3946cf1d8d2.png" alt="image" title="image"></a></p>
-<p>剩下的两种方式有兴趣同学可以自己摸索一下了</p>
-<p>&nbsp;</p>
-<h3 id="查找数据"><a href="#查找数据" class="headerlink" title="查找数据"></a>查找数据</h3><blockquote>
-<p>可以调用object store的get方法通过键获取数据，以使用keyPath做键为例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function getDataByKey(db,storeName,value)&#123;</div><div class="line"></div><div class="line">    var transaction = db.transaction(storeName,&apos;readwrite&apos;); </div><div class="line">    </div><div class="line">    var store = transaction.objectStore(storeName); </div><div class="line">    </div><div class="line">    var request = store.get(value);</div><div class="line">    </div><div class="line">    request.onsuccess = function (e)&#123; </div><div class="line">        var student = e.target.result; </div><div class="line">        console.log(student.name); </div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<p>&nbsp;</p>
-<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><blockquote>
-<p>可以调用object store的put方法更新数据，会自动替换键值相同的记录，达到更新目的，没有相同的则添加，以使用keyPath做键为例</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function updateDataByKey(db,storeName,value)&#123;</div><div class="line"></div><div class="line">    var transaction = db.transaction(storeName,&apos;readwrite&apos;); </div><div class="line">    </div><div class="line">    var store = transaction.objectStore(storeName); </div><div class="line">    </div><div class="line">    var request= store.get(value);</div><div class="line">    </div><div class="line">    request.onsuccess = function(e)&#123; </div><div class="line">    </div><div class="line">        var student= e.target.result; </div><div class="line">        </div><div class="line">        student.age = 35;</div><div class="line">        </div><div class="line">        store.put(student); </div><div class="line">        </div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&nbsp;</p>
-<h3 id="删除数据及object-store"><a href="#删除数据及object-store" class="headerlink" title="删除数据及object store"></a>删除数据及object store</h3><blockquote>
-<p>调用object store的delete方法根据键值删除记录</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function deleteDataByKey(db,storeName,value)&#123;</div><div class="line"></div><div class="line">    var transaction=db.transaction(storeName,&apos;readwrite&apos;);</div><div class="line">    </div><div class="line">    var store= transaction.objectStore(storeName); </div><div class="line">    </div><div class="line">    store.delete(value); </div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>调用object store的clear方法可以清空object store</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function clearObjectStore(db,storeName)&#123;</div><div class="line"></div><div class="line">    var transaction=db.transaction(storeName,&apos;readwrite&apos;); </div><div class="line">    </div><div class="line">    var store=transaction.objectStore(storeName); </div><div class="line">    </div><div class="line">    store.clear();</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>调用数据库实例的deleteObjectStore方法可以删除一个object store，这个就得在onupgradeneeded里面调用了</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">if(db.objectStoreNames.contains(&apos;students&apos;))&#123; </div><div class="line"></div><div class="line">    db.deleteObjectStore(&apos;students&apos;); </div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&nbsp;</p>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>这就是关于indexedDB的基本使用方式，很多同学看了会觉得很鸡肋，和我们正常自己定义个对象使用没什么区别，也就是能保存在本地罢了，这是因为我们还没有介绍indexedDB之所以称为indexed的杀器——索引，这个才是让indexedDB大显神通的东西.</p>
-
       
     </div>
     
@@ -395,6 +246,10 @@
       
       <div class="clearfix"></div>
     </div>
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/26/IndexedDB的基本使用/#more">more >></a>
+        </p>
       
     
   </div>
