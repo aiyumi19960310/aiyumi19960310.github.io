@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>关于兼容性问题 | hight-power&#39;Home</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在工作当中，经常云间许多兼容性的问题，不管是PC端还是web移动端，由于各种浏览器的厂商实现各种规范的方式不同，以及对ES5、ES6支持等问题，导致了各种的样式失效，html结构不同，js的代码不同等等都是兼容的问题。这时候就有 CSS HACK 的说法，指的是，对于不同的浏览器写出不同的 CSS兼容样式表">
+<meta name="keywords" content="JavaScript html css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于兼容性问题">
+<meta property="og:url" content="http://yoursite.com/2016/08/13/一些简单的兼容性问题/index.html">
+<meta property="og:site_name" content="hight-power&#39;Home">
+<meta property="og:description" content="在工作当中，经常云间许多兼容性的问题，不管是PC端还是web移动端，由于各种浏览器的厂商实现各种规范的方式不同，以及对ES5、ES6支持等问题，导致了各种的样式失效，html结构不同，js的代码不同等等都是兼容的问题。这时候就有 CSS HACK 的说法，指的是，对于不同的浏览器写出不同的 CSS兼容样式表">
+<meta property="og:updated_time" content="2017-09-02T12:15:44.688Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于兼容性问题">
+<meta name="twitter:description" content="在工作当中，经常云间许多兼容性的问题，不管是PC端还是web移动端，由于各种浏览器的厂商实现各种规范的方式不同，以及对ES5、ES6支持等问题，导致了各种的样式失效，html结构不同，js的代码不同等等都是兼容的问题。这时候就有 CSS HACK 的说法，指的是，对于不同的浏览器写出不同的 CSS兼容样式表">
+  
+    <link rel="alternative" href="/atom.xml" title="hight-power&#39;Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://www.shzbbc.com/uploads/tu/ztmb/slt/118473.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("tDGXsePC3LbEMuxXT5iSkx04-gzGzoHsz", "D8WYmqBhzJLtstDvxwuJb282");</script>
+<script src="/js/Counter.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://www.shzbbc.com/uploads/tu/ztmb/slt/118473.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">hight-power</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/aiyumi19960310" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/aiyumi19960310@163.com" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="/1004186340" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/2852117977" title="weibo">weibo</a>
+					        
+								<a class="google" target="_blank" href="/likemasie@gmail.com" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/HTML5-JavaScript/" style="font-size: 10px;">HTML5 JavaScript</a> <a href="/tags/JavaScript-html-css/" style="font-size: 20px;">JavaScript html css</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">hight-power</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://www.shzbbc.com/uploads/tu/ztmb/slt/118473.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">hight-power</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/aiyumi19960310" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/aiyumi19960310@163.com" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="/1004186340" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/2852117977" title="weibo">weibo</a>
+			        
+						<a class="google" target="_blank" href="/likemasie@gmail.com" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-一些简单的兼容性问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/13/一些简单的兼容性问题/" class="article-date">
+  	<time datetime="2016-08-13T12:26:06.000Z" itemprop="datePublished">2016-08-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于兼容性问题
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript-html-css/">JavaScript html css</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/兼容/">兼容</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2016/08/13/一些简单的兼容性问题/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="关于兼容性问题">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在工作当中，经常云间许多兼容性的问题，不管是PC端还是web移动端，由于各种浏览器的厂商实现各种规范的方式不同，以及对ES5、ES6支持等问题，导致了各种的样式失效，html结构不同，js的代码不同等等都是兼容的问题。这时候就有 CSS HACK 的说法，指的是，对于不同的浏览器写出不同的 CSS兼容样式表</p>
+<hr>
+<a id="more"></a>
+<h4 id="对于面试中的提问"><a href="#对于面试中的提问" class="headerlink" title="对于面试中的提问"></a>对于面试中的提问</h4><ul>
+<li>在面试当中，经常和会被提问到:请说说你对兼容性的看法，或者是请谈谈你曾经遇到的兼容的问题。但是在实际上，没有多少人会去死记硬背有多少个兼容性的问题，只有在写到这个地方的时候，才会反映过来，这个地方有坑，需要跳过。或者说，如果忘记了，打开搜索就有了。</li>
+<li><p>大部分时候我们需要应答的并不是兼容性的问题，而是考察是否对于这个兼容性的问题是否有认知，这种兼容性的问题是怎么出现的。</p>
+<ul>
+<li>1、兼容的根本就是因为不同的浏览器对于语法不同的支持产生的，其中最严重的就是IE浏览器</li>
+<li><p>2、这个时候就要细化，不同的浏览器对于不同的语法的不同支持，例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!-- [if IE]&gt;</div><div class="line">//你想要执行的代码</div><div class="line">&lt;![endif]--&gt;</div><div class="line">&lt;!-- [if lt IE 8]&gt;</div><div class="line">  			//你想要执行的代码</div><div class="line">&lt;![endif]--&gt;</div><div class="line">&lt;!-- [if ! IE 8]&gt;</div><div class="line">  		//你想要执行的代码</div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>上面的代码就是对于基本的IE的判断 当处于 不同的IE的时候执行不同的代码</p>
+</li>
+<li>还有就是对于不同的浏览器，比如: Chrome、Firefox、IE、Opera等的样式兼容问题或者是Js的支持问题。<ul>
+<li>在我们常用的浏览器中，Chrome是对ES语法支持最全面的浏览器。而IE浏览器确是整个行业的毒瘤(这是我自己的理解)。但是我们一样不得不去兼容IE，毕竟多年前，这是一个IE的世界。</li>
+<li>还有记住一点:IE浏览器中的各种兼容性问题，根本原因就需要延伸到javascript编写出来的时候发生的事情了，但是ie的兼容性问题基本上能用这几个方法解决display:inline、font-size:0、float等方法解决。剩余的其他问题就在于IE浏览器对于不同API的不同的命名。最简单的在js中，其他的浏览器的写法是.click等事件，但是在IE中前面加了个on。这些的问题就在javascript在编写出来的时候问了抢占市场产生的问题了。</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h4 id="普遍存在的兼容性问题"><a href="#普遍存在的兼容性问题" class="headerlink" title="普遍存在的兼容性问题"></a>普遍存在的兼容性问题</h4><ul>
+<li>针对ie存在的普遍兼容问题<ul>
+<li>1、双边距BUG float 引起的 解决方法:使用display:none</li>
+<li>2、3像素的问题:ie中float之后文本之间存在3像素的差距， float 引起 解决方法 display:none</li>
+<li>3、超链接 hover 点击后失效 牢记 love hate 原则 即 link、visited、hover、active</li>
+<li>4、ie z-index 问题给父元素添加 position:relative</li>
+<li>5、png24 在ie上出现背景，改用 png8 如果实在不行就该用js更改</li>
+<li>6、js中 事件处理对象 在 ie中只能使用 event 在firefox可以使用e，问了兼容进行判断<code>var e = e ? e : event</code></li>
+<li>7、ie中可以直接.自定义属性名进行获取，在Firefox中需要使用getattribute进行获取 但是ie也支持这个写法 因此同意使用该方法即可</li>
+<li>等等….还存在其他一些ie的兼容性问题，在这不一一赘述，如果想要了解那么 <a href="http://www.qdfuns.com/notes/18090/961a36d50f2efa676061b5a02c374f75.html" target="_blank" rel="external">43种兼容问题</a></li>
+</ul>
+</li>
+<li><p>关于一些通用的兼容问题</p>
+<ul>
+<li>1、在多个浏览器中存在初始样式，如padding、margin等，解决办法是在写css样式表的时候加上 <code>* {padding:0;margin:0}</code>但是不推荐这么写，因为会影响到性能，存在很多用不到的标签样式也会被初始化，推荐需要哪个标签就写上哪个标签就行了</li>
+<li>2、在chrome浏览器中如果字体样式小于12px那么会自动提升到12px，这个时候需要加一小段代码<code>-webkit-text-size-adjust: none;</code>，这样就能解决这个问题。</li>
+<li><p>3、兼容不同的浏览器还有一种就是，同一个效果不同浏览器的api不同这个时候就有了浏览器的私有前缀 <code>火狐Firefox: -moz-; 苹果Safari: -webkit-; 欧朋Opera: -o-; IE浏览器IE: -ms-</code>，对于IE浏览器还有专用的写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">p&#123; _color:red; &#125;            IE6 专用</div><div class="line">*html p&#123; color:#red; &#125;      IE6 专用</div><div class="line">p&#123; +color:red; &#125;            IE6,7 专用</div><div class="line">p&#123; *color:red; &#125;            IE6,7 专用</div><div class="line">*html p&#123; color:red; &#125;       IE6,7 专用</div><div class="line">p&#123;*+color: red;&#125;            IE7 专用</div><div class="line">Body&gt; p&#123; color: red; &#125;      屏蔽 IE6</div><div class="line">p&#123; color:red\9; &#125;           IE8</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;    </p>
+<h4 id="最后的思考"><a href="#最后的思考" class="headerlink" title="最后的思考"></a>最后的思考</h4><ul>
+<li>在这个网络发展的大时代里，不要一味的追求兼容问题，毕竟代码需要进步，那么就需要甩掉沉重的历史冗余代码。要学会取舍，当然，针对于不同的客户群体有不同的兼容代码。牢记一点，应变，毕竟代码有不同的写法。最后，记住兼容查询的网站。例如:<a href="http://caniuse.com/" target="_blank" rel="external">can i use</a>。或者在编辑器中下载一些插件。</li>
+<li>关于大部分的js代码兼容性问题，最简单的查询方法就在查看<a href="http://jquery.com/" target="_blank" rel="external">jquery</a>源代码，在当中的注释中，对于js的兼容判断处理的非常出色<a href="http://jquery.com/" target="_blank" rel="external">jquery</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/10/关于HTML 以及 CSS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一些简单的面试题分享（HTML以及CSS简单分享）</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="一些简单的兼容性问题" data-title="关于兼容性问题" data-url="http://yoursite.com/2016/08/13/一些简单的兼容性问题/"  data-images="http://www.shzbbc.com/uploads/tu/ztmb/slt/118473.jpg" data-content="关于兼容性问题">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2017 hight-power
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
